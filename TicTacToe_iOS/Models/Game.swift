@@ -17,7 +17,10 @@ struct Game {
     var lowLeft  = " "
     var lowMid   = " "
     var lowRight = " "
-    var notEmpty =  false
+    var notEmpty = false
+    var winnerX  = false
+    var winnerO  = false
+    var draw     = false
     
     mutating func TopLeft (){
         if (topLeft == " "){
@@ -34,6 +37,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func TopMid (){
         if (topMid == " "){
@@ -50,6 +54,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func TopRight (){
         if (topRight == " "){
@@ -66,6 +71,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func MidLeft (){
         if (midLeft == " "){
@@ -82,6 +88,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func MidMid (){
         if (midMid == " "){
@@ -98,6 +105,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func MidRight (){
         if (midRight == " "){
@@ -114,6 +122,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func LowLeft (){
         if (lowLeft == " "){
@@ -130,6 +139,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func LowMid (){
         if (lowMid == " "){
@@ -146,6 +156,7 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
     mutating func LowRight (){
         if (lowRight == " "){
@@ -162,5 +173,63 @@ struct Game {
         } else{
             notEmpty = true
         }
+        updateGameStatus()
     }
+    mutating func updateGameStatus(){
+        // Checking the vertical columns
+        if (topLeft == midLeft && midLeft == lowLeft){
+            if (topLeft == "X"){
+                winnerX  = true}
+            else if (topLeft == "O"){
+                winnerO  = true}
+        }
+        else if (topMid == midMid && midMid == lowMid){
+            if (topMid == "X"){
+                winnerX  = true}
+            else if (topMid == "O"){
+                winnerO  = true}
+        }
+        else if (topRight == midRight && midRight == lowRight){
+            if (topRight == "X"){
+                winnerX  = true}
+            else if (topRight == "O"){
+                winnerO  = true}
+        }
+        // Checking the horizontal rows
+        else if (topLeft == topMid && topMid == topRight){
+            if (topRight == "X"){
+                winnerX  = true}
+            else if (topRight == "O"){
+                winnerO  = true}
+        }
+        else if (midLeft == midMid && midRight == topRight){
+            if (midLeft == "X"){
+                winnerX  = true}
+            else if (topRight == "O"){
+                winnerO  = true}
+        }
+        else if (lowLeft == lowMid && lowLeft == lowRight){
+            if (lowLeft == "X"){
+                winnerX  = true}
+            else if (lowLeft == "O"){
+                winnerO  = true}
+        }
+        // Checking the diagonals
+        else if (topLeft == midMid && midMid == lowRight){
+            if (lowLeft == "X"){
+                winnerX  = true}
+            else if (lowLeft == "O"){
+                winnerO  = true}
+        }
+        else if (topRight == midMid && midMid == lowLeft){
+            if (topRight == "X"){
+                winnerX  = true}
+            else if (topRight == "O"){
+                winnerO  = true}
+        }
+        else if (topRight != " " && topMid != " " && topLeft != " " && midLeft != " " && midRight != " " && midMid != " " && lowLeft != " " && lowMid != " " && lowRight != " "  ){
+            draw = true
+        }
+    }
+
 }
