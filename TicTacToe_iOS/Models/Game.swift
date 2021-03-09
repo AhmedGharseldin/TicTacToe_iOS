@@ -17,25 +17,24 @@ struct Game {
     var lowLeft  = " "
     var lowMid   = " "
     var lowRight = " "
-    var notEmpty = false
-    var winnerX  = false
-    var winnerO  = false
-    var draw     = false
+    
+    var status = "playing"
+    var alert = false
+    
     
     mutating func TopLeft (){
         if (topLeft == " "){
             if (player == 1){
                 topLeft = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 topLeft = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true;
         }
         updateGameStatus()
     }
@@ -44,15 +43,14 @@ struct Game {
             if (player == 1){
                 topMid = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 topMid = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true;
         }
         updateGameStatus()
     }
@@ -61,15 +59,14 @@ struct Game {
             if (player == 1){
                 topRight = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 topRight = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -78,15 +75,14 @@ struct Game {
             if (player == 1){
                 midLeft = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 midLeft = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -95,15 +91,14 @@ struct Game {
             if (player == 1){
                 midMid = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 midMid = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -112,15 +107,14 @@ struct Game {
             if (player == 1){
                 midRight = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 midRight = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -129,15 +123,14 @@ struct Game {
             if (player == 1){
                 lowLeft = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 lowLeft = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -146,15 +139,14 @@ struct Game {
             if (player == 1){
                 lowMid = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 lowMid = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -163,15 +155,14 @@ struct Game {
             if (player == 1){
                 lowRight = "X"
                 player = 2
-                notEmpty =  false
             }
             else{
                 lowRight = "O"
                 player = 1
-                notEmpty =  false
             }
         } else{
-            notEmpty = true
+            status = "not empty"
+            alert = true
         }
         updateGameStatus()
     }
@@ -179,57 +170,149 @@ struct Game {
         // Checking the vertical columns
         if (topLeft == midLeft && midLeft == lowLeft){
             if (topLeft == "X"){
-                winnerX  = true}
+                status = "X won"
+                alert = true
+            }
             else if (topLeft == "O"){
-                winnerO  = true}
+                status = "O won"
+                alert = true
+            }
         }
         else if (topMid == midMid && midMid == lowMid){
             if (topMid == "X"){
-                winnerX  = true}
+                status = "X won"
+                alert = true
+            }
             else if (topMid == "O"){
-                winnerO  = true}
+                status = "O won"
+                alert = true
+            }
         }
         else if (topRight == midRight && midRight == lowRight){
             if (topRight == "X"){
-                winnerX  = true}
+                status = "X won"
+                alert = true
+            }
             else if (topRight == "O"){
-                winnerO  = true}
+                status = "O won"
+                alert = true
+            }
         }
         // Checking the horizontal rows
         else if (topLeft == topMid && topMid == topRight){
-            if (topRight == "X"){
-                winnerX  = true}
-            else if (topRight == "O"){
-                winnerO  = true}
+            if (topLeft == "X"){
+                status = "X won"
+                alert = true
+            }
+            else if (topLeft == "O"){
+                status = "O won"
+                alert = true
+            }
         }
-        else if (midLeft == midMid && midRight == topRight){
+        else if (midLeft == midMid && midMid == midRight){
             if (midLeft == "X"){
-                winnerX  = true}
-            else if (topRight == "O"){
-                winnerO  = true}
+                status = "X won"
+                alert = true
+            }
+            else if (midLeft == "O"){
+                status = "O won"
+                alert = true
+            }
         }
-        else if (lowLeft == lowMid && lowLeft == lowRight){
+        else if (lowLeft == lowMid && lowMid == lowRight){
             if (lowLeft == "X"){
-                winnerX  = true}
+                status = "X won"
+                alert = true
+            }
             else if (lowLeft == "O"){
-                winnerO  = true}
+                status = "O won"
+                alert = true
+            }
         }
         // Checking the diagonals
         else if (topLeft == midMid && midMid == lowRight){
-            if (lowLeft == "X"){
-                winnerX  = true}
-            else if (lowLeft == "O"){
-                winnerO  = true}
+            if (topLeft == "X"){
+                status = "X won"
+                alert = true
+            }
+            else if (topLeft == "O"){
+                status = "O won"
+                alert = true
+            }
         }
         else if (topRight == midMid && midMid == lowLeft){
             if (topRight == "X"){
-                winnerX  = true}
+                status = "X won"
+                alert = true
+            }
             else if (topRight == "O"){
-                winnerO  = true}
+                status = "O won"
+                alert = true
+            }
         }
         else if (topRight != " " && topMid != " " && topLeft != " " && midLeft != " " && midRight != " " && midMid != " " && lowLeft != " " && lowMid != " " && lowRight != " "  ){
-            draw = true
+            status = "draw"
+            alert = true
         }
     }
-
+    
+    
+    func getAlertTitle() -> String{
+        switch status {
+            case "not empty":
+                return "Oooops!"
+            case "X won", "O won":
+                return "Congratulations !!!"
+            case "draw":
+                return "Bummer !!!"
+            default:
+                return ""
+        }
+    }
+    
+    func getAlertMessage() -> String{
+        switch status {
+            case "not empty":
+                return "This spot is already taken buddy"
+            case "X won":
+                return "Player - X - has won"
+            case "O won":
+                return "Player - O - has won"
+            case "draw":
+                return "It's a draw"
+            default:
+                return ""
+        }
+    }
+    
+    func nextAction() -> String{
+        switch status {
+            case "not empty":
+                return "Try Again !"
+            case "X won", "O won", "draw":
+                return "Play Again"
+            default:
+                return ""
+        }
+    }
+    
+    mutating func continuePlaying(){
+        if(status == "X won" || status == "O won" || status == "draw"){
+            player   = 1
+            topLeft  = " "
+            topMid   = " "
+            topRight = " "
+            midLeft  = " "
+            midMid   = " "
+            midRight = " "
+            lowLeft  = " "
+            lowMid   = " "
+            lowRight = " "
+            print("Starting Over")
+        }else{
+            print("Continue playing")
+        }
+        alert = false
+        status = "playing"
+    }
 }

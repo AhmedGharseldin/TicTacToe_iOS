@@ -28,10 +28,6 @@ struct ContentView: View {
                         Button(action: {
                             print("Top Left Button!")
                             game.TopLeft()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.topLeft)
                                 .bold()
@@ -39,28 +35,14 @@ struct ContentView: View {
                                 .font(.largeTitle)
                                 .foregroundColor(.red)
                         }
-                        .alert(isPresented: $noMove, content: {
-                            return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
+                        .alert(isPresented: $game.alert, content: {
+                          return Alert(title: Text(game.getAlertTitle()), message: Text (game.getAlertMessage()), dismissButton: .default(Text(game.nextAction())){game.continuePlaying()})
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
-                    
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                         Button(action: {
                             print("Top Mid Button!")
                             game.TopMid()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.topMid)
                                 .bold()
@@ -71,24 +53,11 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                         Button(action: {
                             print("Top Right Button!")
                             game.TopRight()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.topRight)
                                 .bold()
@@ -99,15 +68,6 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     }
@@ -115,10 +75,6 @@ struct ContentView: View {
                         Button(action: {
                             print("Mid Left Button!")
                             game.MidLeft()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.midLeft)
                                 .bold()
@@ -129,24 +85,11 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                         Button(action: {
                             print("Mid Mid Button!")
                             game.MidMid()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.midMid)
                                 .bold()
@@ -157,24 +100,11 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                         Button(action: {
                             print("Mid Right Button!")
                             game.MidRight()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.midRight)
                                 .bold()
@@ -185,15 +115,6 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     }
@@ -201,10 +122,6 @@ struct ContentView: View {
                         Button(action: {
                             print("Low Left Button!")
                             game.LowLeft()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.lowLeft)
                                 .bold()
@@ -215,24 +132,11 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 1)
                         Button(action: {
                             print("Low Mid Button!")
                             game.LowMid()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.lowMid)
                                 .bold()
@@ -243,24 +147,11 @@ struct ContentView: View {
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
                         })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
-                        })
                             .frame(width: 100.0, height: 100.0)
                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                         Button(action: {
                             print("Low Right Button!")
                             game.LowRight()
-                            noMove = game.notEmpty
-                            xWins = game.winnerX
-                            oWins = game.winnerO
-                            itsDraw = game.draw
                         }) {
                             Text (game.lowRight)
                                 .bold()
@@ -270,15 +161,6 @@ struct ContentView: View {
                         }
                         .alert(isPresented: $noMove, content: {
                             return Alert(title: Text("Oooops!"), message: Text ("This spot is already taken buddy"), dismissButton: .default(Text("Try Again !")))
-                        })
-                        .alert(isPresented: $xWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - X - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $oWins, content: {
-                            return Alert(title: Text("Congratulations !!!"), message: Text ("Player - O - has won"), dismissButton: .default(Text("Play Again")))
-                        })
-                        .alert(isPresented: $itsDraw, content: {
-                            return Alert(title: Text("Bummer !!!"), message: Text ("It's a draw"), dismissButton: .default(Text("Play Again")))
                         })
                             .frame(width: 100.0, height: 100.0)
                             .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
